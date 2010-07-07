@@ -1,5 +1,4 @@
 /* See LICENSE file for copyright and license details. */
-/* Some changes in this file were made by David Serrano <david.nonamedguy@gmail.com> */
 
 /* custom functions */
 static void x_nexttag(const Arg *arg);
@@ -20,14 +19,18 @@ static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "1:www", "2:dev", "3:comm", "4:work", "5:shell", "6:remote", "7:misc", "8:games", "9:music" };
+static const char *tags[] = { "1:www", "2:dev", "3:comm", "4:work", "5:shell", "6:remote", "7:misc", "8:mutimedia", "9:status" };
 
 static const Rule rules[] = {
-	/* class        instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",       NULL,       NULL,       0,            True,        -1 },
-	{ "Firefox",    NULL,       NULL,       0,            False,       -1 },
-	{ "banshee-1",  "Banshee",  NULL,       1 << 8,       False,       -1 },
-	{  NULL,        "xterm",    NULL,       1 << 4,       False,       -1 },
+	/* class            instance    title       tags mask     isfloating   monitor */
+	{ "Gimp",           NULL,       NULL,       0,            True,        -1 },
+	{ "Firefox",        NULL,       NULL,       0,            False,       -1 },
+	{ "banshee-1",      "Banshee",  NULL,       1 << 7,       False,       -1 },
+	{ NULL,             "xterm",    NULL,       1 << 4,       False,       -1 },
+	{ "stalonetray",    NULL,       NULL,       1 << 8,       False,       -1 },
+	{ "Xchat",          NULL,       NULL,       1 << 2,       False,       -1 },
+	{ "Lanikai",        NULL,       NULL,       1 << 2,       False,       -1 },
+	{ "emesene",        NULL,       NULL,       1 << 2,       False,       -1 },
 };
 
 /* layout(s) */
