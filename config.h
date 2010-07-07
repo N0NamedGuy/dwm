@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+/* Some changes in this file were made by David Serrano <david.nonamedguy@gmail.com> */
 
 /* custom functions */
 static void x_nexttag(const Arg *arg);
