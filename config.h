@@ -1,5 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
+/* custom defines */
+#define DWMRC_PATH "~/.dwmrc"
+
 /* custom functions */
 static void x_nexttag(const Arg *arg);
 static void x_prevtag(const Arg *arg);

@@ -177,6 +177,7 @@ static void drawbar(Monitor *m);
 static void drawbars(void);
 static void drawsquare(Bool filled, Bool empty, Bool invert, unsigned long col[ColLast]);
 static void drawtext(const char *text, unsigned long col[ColLast], Bool invert);
+static void dwmrc(const char *path);
 static void enternotify(XEvent *e);
 static void expose(XEvent *e);
 static void focus(Client *c);
@@ -786,6 +787,12 @@ drawtext(const char *text, unsigned long col[ColLast], Bool invert) {
 		XmbDrawString(dpy, dc.drawable, dc.font.set, dc.gc, x, y, buf, len);
 	else
 		XDrawString(dpy, dc.drawable, dc.gc, x, y, buf, len);
+}
+
+void
+dwmrc(const char *dwmrcpath) {
+    printf("Doing system(\"%s\");\n",dwmrcpath);
+    system(dwmrcpath);
 }
 
 void
@@ -2048,17 +2055,18 @@ zoom(const Arg *arg) {
 int
 main(int argc, char *argv[]) {
 	if(argc == 2 && !strcmp("-v", argv[1]))
-		die("dwm-"VERSION", © 2006-2010 dwm engineers, see LICENSE for details\n");
+        die("dwm-"VERSION", © 2006-2010 dwm engineers, modified by David Serrano, see LICENSE for details\n");
 	else if(argc != 1)
 		die("usage: dwm [-v]\n");
 	if(!setlocale(LC_CTYPE, "") || !XSupportsLocale())
 		fputs("warning: no locale support\n", stderr);
 	if(!(dpy = XOpenDisplay(NULL)))
 		die("dwm: cannot open display\n");
-	checkotherwm();
+	checkotherwm(); /* TODO: Add support to --replace flag */
 	setup();
 	scan();
-	run();
+	dwmrc(DWMRC_PATH); /* TODO: Read .dwmrc path from args */   
+    run();
 	cleanup();
 	XCloseDisplay(dpy);
 	return 0;
